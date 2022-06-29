@@ -756,7 +756,7 @@ class GenieModelForGeneration(GenieModel):
                 )
 
                 ## record model input
-                e2e_dialogue_preds[dial_id]["turns"][str(turn_id)]["model_input"] = input_text
+                e2e_dialogue_preds[dial_id]["turns"][str(turn_id)][f"model_input_{train_target}"] = input_text
 
                 numericalized_turn = self.numericalize_example(input_text, turn_id, device)
                 generated = self.generate(
@@ -790,7 +790,7 @@ class GenieModelForGeneration(GenieModel):
                 batch_prediction.append([partial_batch_prediction])
 
                 # record model output
-                e2e_dialogue_preds[dial_id]["turns"][str(turn_id)]["model_output"] = partial_batch_prediction
+                e2e_dialogue_preds[dial_id]["turns"][str(turn_id)][f"model_output_{train_target}"] = partial_batch_prediction
 
                 predictions += batch_prediction
 
