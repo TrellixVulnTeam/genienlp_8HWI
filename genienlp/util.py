@@ -361,7 +361,11 @@ def make_data_loader(dataset, numericalizer, batch_size, device=None, train=Fals
 
     all_features_filtered = []
     # remove examples longer than model input length
+
     for ex in all_features:
+        # Uncomment for debugging to print the long examples
+        # if dataset.batch_size_fn([ex]) > model_input_max_length:
+        #     print(ex)
         if batch_size_fn([ex]) < model_input_max_length:
             all_features_filtered.append(ex)
 
